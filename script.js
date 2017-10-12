@@ -1,5 +1,7 @@
 var imageArray = new Array;
 i = 0;
+var flag = 0;
+
 
 function addImage(name) {
 	var picName = name;
@@ -14,21 +16,23 @@ function addImage(name) {
 
 function startAnim() {
 	if(imageArray.length > 0) {
-
-
+    
 		document.getElementById("tableDiv").innerHTML = "<img style='margin: 1px' src='" + imageArray[0] + "'>"; 
 
-		timer = setInterval(function() {
-			document.getElementById("tableDiv").innerHTML ="<img style='margin: 1px' src='" + imageArray[i] + "'>";
-			if(i<imageArray.length-1) {
-				i++;
-			}
+        if(flag == 0){
+            flag = 1;
+            timer = setInterval(function() {
+                document.getElementById("tableDiv").innerHTML ="<img style='margin: 1px' src='" + imageArray[i] + "'>";
+                if(i<imageArray.length-1) {
+                    i++;
+                }
 
-			else if(i>=imageArray.length-1) {
-				i=0;
-			}
-			
-		},500);
+                else if(i>=imageArray.length-1) {
+                    i=0;
+                }
+
+            },500);
+        }
 	}
 
 	else {
@@ -39,6 +43,7 @@ function startAnim() {
 function stopAnim() {
 	clearInterval(timer);
 	i=0;
+    flag = 0;
 	document.getElementById("tableDiv").innerHTML = "<img style='margin: 1px' src='" + imageArray[0] + "'>";
 }
 
